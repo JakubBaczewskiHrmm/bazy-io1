@@ -1,0 +1,9 @@
+1. CREATE TABLE postac
+	(id_postaci int not null auto_increment primary key, 
+	nazwa varchar(40), 
+	rodzaj enum ('wiking','ptak','kobieta'), 
+	data_ur date, wiek int UNSIGNED);
+2. insert into postac VALUES(0, 'Bjorn', 'Wiking','1956-02-11','66')
+3.insert into postac VALUES(0, 'Drozd', 'Ptak','2022-13-09','1');
+4.mysql> insert into postac VALUES(0, 'Tesciowa', 'kobieta','1942-09-11','87');
+5.UPDATE postac SET wiek=87 WHERE wiek=88;
