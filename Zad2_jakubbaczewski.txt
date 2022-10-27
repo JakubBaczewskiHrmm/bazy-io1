@@ -8,4 +8,5 @@
 	FOREIGN KEY(id_wlasciciela) 
 	REFFERENCES postac(id_postaci) 
 	ON DELETE CASCADE;
+4.ALTER TABLE walizki ALTER COLUMN kolor SET DEFAULT 'rozowy';	
 
