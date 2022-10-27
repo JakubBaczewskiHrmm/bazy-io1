@@ -1,0 +1,11 @@
+1.CREATE TABLE walizki
+	(id_walizki int not null auto_increment primary key, 
+	pojemnosc int UNSIGNED, 
+	rodzaj enum('rozowy','czerwony','teczowy','zolty') );
+2. ALTER TABLE walizki ADD COLUMN id_wlasciciela int;
+
+3.ALTER TABLE walizki ADD CONSTRAINT 
+	FOREIGN KEY(id_wlasciciela) 
+	REFFERENCES postac(id_postaci) 
+	ON DELETE CASCADE;
+
