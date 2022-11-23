@@ -1,0 +1,41 @@
+ZAD4
+ALTER TABLE postac MODIFY rodzaj 	
+	ENUM('kobieta','wiking','ptak','syrena','waz');
+
+INSERT INTO postac VALUES
+	('8','Loko','waz','1949-07-29','73',NULL,NULL,'22223332232');
+
+UPDATE postac SET nazwa_statku = NULL where nazwa = 'Tesciowa';
+
+CREATE TABLE marynarz(
+	id_postaci INT NOT NULL,
+	nazwa VARCHAR(40),
+	rodzaj ENUM('kobieta','wiking','ptak','syrena','waz'),
+	data_ur DATE,
+	wiek INT UNSIGNED,
+	funkcja VARCHAR(50),
+	nazwa_statku VARCHAR(50),
+	pesel VARCHAR(11) NOT NULL,
+FOREIGN KEY(pesel) REFERENCES postac(pesel) );
+
+INSERT INTO marynarz SELECT * FROM postac WHERE nazwa_statku IS NOT NULL;
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+ZAD5
+UPDATE marynarz SET nazwa_statku = NULL;
+UPDATE postac SET nazwa_statku = NULL;
+DELETE FROM marynarz WHERE pesel = '99099922255';
+DELETE FROM postac WHERE pesel = '99099922255';
+DELETE FROM statek WHERE nazwa_statku LIKE '%';
+ALTER TABLE postac DROP FOREIGN KEY postac_ibfk_1;
+DROP TABLE statek;
+
+CREATE TABLE zwierz AS SELECT * FROM postac;
+SELECT * FROM zwierz;
+DELETE FROM zwierz WHERE rodzaj = 'kobieta';
+DELETE FROM zwierz WHERE rodzaj = 'wiking';
+DELETE FROM zwierz WHERE rodzaj = 'syrena';
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
