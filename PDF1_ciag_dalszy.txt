@@ -1,0 +1,62 @@
+ZAD3
+CREATE TABLE izba(
+	adres_budynku INT AUTO_INCREMENT,
+	nazwa_izby VARCHAR(40),
+	metraz INT UNSIGNED,
+	wlasciciel INT,
+PRIMARY KEY(adres_budynku,nazwa_izby),
+FOREIGN KEY(wlasciciel) REFERENCES postac(id_postaci) ON DELETE SET NULL);
+
+	ALTER TABLE izba ADD COLUMN kolor_izby VARCHAR(20) DEFAULT 'czarny' AFTER metraz;
+
+	INSERT INTO izba VALUES ('1','spizarnia','8',DEFAULT,'1');
+ZAD4
+CREATE TABLE przetwory(
+	id_przetworu INT AUTO_INCREMENT PRIMARY KEY,
+	rok_produkcji YEAR DEFAULT (1654),
+	id_wykonawcy INT,
+	zawartosc VARCHAR(50),
+	dodatek VARCHAR(50) DEFAULT 'papryczka chilli',
+	id_konsumenta INT,
+FOREIGN KEY(id_wykonawcy) REFERENCES postac(id_postaci),
+FOREIGN KEY(id_konsumenta) REFERENCES postac(id_postaci)
+);
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ZAD5
+INSERT INTO postac VALUES
+(4,'Harodur','wiking',1970-01-02',52),
+(5,'Jamal','wiking','1968-03-09',54)),
+(6,'Korrin','wiking','1975-08-23',47),
+(7,'Raggarak','wiking','1972-09-11',50),
+(8,'Kuriling','wiking','1959-06-10',63);
+
+CREATE TABLE statek(
+nazwa_statku VARCHAR(50) PRIMARY KEY,
+rodzaj_statku ENUM('duzy','maly'),
+data_wodowania DATE,
+max_ladownosc INT UNSIGNED);
+
+INSERT INTO statek VALUES
+('statek_1','duzy','2011-11-11',200),
+('statek_2','maly','2012-01-12',120);
+
+ALTER TABLE postac ADD COLUMN funkcja VARCHAR(50);
+
+UPDATE postac SET funkcja = 'kapitan' WHERE nazwa = 'Bjorn';
+
+ALTER TABLE postac ADD COLUMN nazwa_statku VARCHAR(50);
+ALTER TABLE postac ADD CONSTRAINT FOREIGN KEY(nazwa_statku) REFERENCES statek(nazwa_statku);
+
+UPDATE postac SET nazwa_statku = 'statek_1' WHERE nazwa = 'Bjorn';
+UPDATE postac SET nazwa_statku = 'statek_1' WHERE nazwa = 'Drozd';
+UPDATE postac SET nazwa_statku = 'statek_1' WHERE nazwa = 'Harodur';
+UPDATE postac SET nazwa_statku = 'statek_1' WHERE nazwa = 'Jamal';
+UPDATE postac SET nazwa_statku = 'statek_1' WHERE nazwa = 'Korrin';
+UPDATE postac SET nazwa_statku = 'statek_1' WHERE nazwa = 'Raggarak';
+UPDATE postac SET nazwa_statku = 'statek_1' WHERE nazwa = 'Kuriling';
+
+DELETE FROM izba WHERE nazwa_izby = 'spizarnia';
+
+DROP TABLE izba;
+
