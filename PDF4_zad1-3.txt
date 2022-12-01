@@ -1,0 +1,19 @@
+ZAD 1
+SELECT (avg)waga AS sredniawaga FROM kreatura;
+SELECT (avg)waga AS sredniawaga, COUNT(id_kreatury) AS ilosc FROM kreatura GROUP BY 	rodzaj;
+SELECT CONCAT round (curdate(year)-avg(year(data_ur));
+
+=-=-=
+ZAD 2
+SELECT (sum)waga AS sumawag FROM zasob GROUP BY rodzaj;
+SELECT nazwa,(avg)waga AS sredniawaga FROM zasob WHERE ilosc <=4 GROUP BY nazwa HAVING 	sum(waga)=10;
+SELECT COUNT(DISTINCT nazwa) FROM 'zasob' GROUP BY 'rodzaj' HAVING some ilosc min(1); 
+
+=-=-=
+
+ZAD 3
+SELECT kreatura.nazwa, sum(ilosc) FROM kreatura JOIN ekwipunek on 	kreatura.id_kreatury=ekwipunek.id_kreatury GROUP BY nazwa;
+SELECT kreatura.nazwa, GROUP_CONCAT(DISTINCT zasob.nazwa) AS zasoby FROM kreatura JOIN 	ekwipunek on kreatura.id_kreatury=ekwipunek.id_kreatury JOIN zasob on 	zasob.idZasobu=ekwipunek.idZasobu GROUP BY kreatura nazwa;
+SELECT kreatura.nazwa, GROUP BY(zasob.nazwa); 
+
+
